@@ -1,12 +1,14 @@
 import $ from 'jquery';
+import Backbone from 'backbone';
 
 function renderSingleItem(item) {
   const li = $(`
     <li>
-        ${model.get('item', 'price', 'description')}
+        ${item.get('item')}
+        ${item.get('price')}
+        ${item.get('description')}
     </li>
     `);
-    li.on('click', (e) => {
-
-    });
-}
+return li;
+    }
+export default renderSingleItem;

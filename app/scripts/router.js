@@ -2,27 +2,29 @@ import $ from 'jquery';
 import Backbone from 'backbone';
 import renderSingleItem from './views/menuItem';
 import renderCourseList from './views/course';
-import Items from './collections/items';
+import BeerItems from './collections/beerItems';
+import BeerItem from './models/beerItem';
+import EntreeItem from './models/entreeItem';
+import EntreeItems from './collections/entrees';
+import GameItem from './models/gameItem';
+import Games from './collections/games';
 
-let items = new Items();
-let container = $('.container');
+let beerItems = new BeerItems();
+let entreeItems = new EntreeItems();
+let games = new Games();
+let container = $('.menu-container');
 
 const Router = Backbone.Router.extend({
   routes: {
     '': 'home',
   },
   home() {
-    container.empty();
-  items.fetch({
-    success: () => {
-        renderCourseList(items);
-        renderSingleItem(items);
-      }
-  });
+    beerItems.fetch();
+    entreeItems.fetch();
+    games.fetch();
+    container.append(renderCourseList(entreeItems));
 
-
-  }
-
+    }
 });
 
 const router = new Router();

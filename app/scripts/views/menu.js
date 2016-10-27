@@ -1,2 +1,1 @@
-let menu = $('.menu-container');
-menu.append(ul);
+import $ from 'jquery';
