@@ -22,7 +22,9 @@ const Router = Backbone.Router.extend({
     beerItems.fetch();
     entreeItems.fetch();
     games.fetch();
+    container.append(renderCourseList(beerItems));
     container.append(renderCourseList(entreeItems));
+    container.append(renderCourseList(games));
 
     }
 });

@@ -15,11 +15,12 @@ entreeItems.forEach((item)=> {
   entreeItems.on('update', () => {
     entreeItems.forEach((item) => {
       ul.append(renderSingleItem(item));
-      console.log(item);
+      // console.log(item);
     });
 
   });
       return ul;
 }
+
 
 export default renderCourseList;
