@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Backbone from 'backbone';
 
-function renderSingleItem(item, orderItems) {
+function renderSingleItem(item, orderItem) {
   const li = $(`
     <li>
         ${item.get('item')}
@@ -10,14 +10,9 @@ function renderSingleItem(item, orderItems) {
     </li>
     `);
     li.on('click', (e) => {
-      orderItems.create({
+      orderItem.updateOrder({
         name  : item.get('item'),
         price : item.get('price')});
-
-      // const order = $('.order-container');
-      // let itemsOrdered = $(`<h6>${item.get('item')}</h6>
-      // <span>${item.get('price')}</span>`);
-      // order.append(itemsOrdered);
     });
 return li;
     }

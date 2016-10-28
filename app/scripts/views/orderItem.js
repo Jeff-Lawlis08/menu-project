@@ -1,21 +1,23 @@
 import $ from 'jquery';
 import Backbone from 'backbone';
 
-function renderSingleOrderItem (orderItems) {
+function renderSingleOrderItem (orderItem) {
   let singleOrderDiv = $(`
     <div class="single-div">
-    ${orderItems.get('name')}
-    ${orderItems.get('price')}
+    ${orderItem.name}
+    $${orderItem.price}
     <button class="delete">Delete</button>
     </div>
     `);
     singleOrderDiv.find('.delete').on('click', (e) => {
       // console.log(orderItems);
-      orderItems.destroy({
+      orderItem.destroy({
         success: function() {console.log('deleted!');
       }
       });
     });
+
     return singleOrderDiv;
+
 }
 export default renderSingleOrderItem;

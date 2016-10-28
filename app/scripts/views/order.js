@@ -2,25 +2,24 @@ import Backbone from 'backbone';
 import $ from 'jquery';
 import renderSingleOrderItem from './orderItem';
 
-function renderOrder (orderItems) {
+function renderOrder (orderItem) {
   const orderDiv = $(`
     <div class="order-div">
     </div>
     `);
-
-    orderItems.forEach((item)=> {
+    orderItem.get('order').forEach((item)=> {
       orderDiv.append(renderSingleOrderItem(item));
     });
 
-      orderItems.on('update', () => {
+      orderItem.on('change', () => {
         orderDiv.empty();
 
         let subtotal = 0;
         let tax = 0;
         let total = 0;
-        orderItems.forEach((item) => {
+        orderItem.get('order').forEach((item) => {
 
-          let itemPrice = item.get('price');
+          let itemPrice = item.price;
 
           subtotal += itemPrice;
           console.log(subtotal);
@@ -35,17 +34,24 @@ function renderOrder (orderItems) {
           // console.log(item);
         });
         let taxDiv = $(`
-          <div class="tax-div">Tax: $${tax}
+          <div class="tax-div">Tax: $${Math.round(tax*100)/100}
           </div>
           `);
         let totalDiv = $(`
-          <div class="total-div">Total: $${total}
+          <div class="total-div">Total: $${Math.round(total*100)/100}
           </div>
+          `);
+        const orderButton = $(`
+          <button class="place-order">Place Order</button>
           `);
           orderDiv.append(taxDiv);
           orderDiv.append(totalDiv);
-
+          orderDiv.append(orderButton);
+          orderButton.on('click', (e) => {
+            location.hash = 'placedorder';
+          });
       });
+
           return orderDiv;
     }
 export default renderOrder;
