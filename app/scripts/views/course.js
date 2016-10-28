@@ -1,20 +1,19 @@
 import $ from 'jquery';
-import menuItem from './menuItem';
 import Backbone from 'backbone';
 import renderSingleItem from './menuItem';
 
-function renderCourseList(entreeItems) {
+function renderCourseList(entreeItems, orderItems) {
   const ul = $(`
     <ul>
     </ul>
     `);
 entreeItems.forEach((item)=> {
-  ul.append(renderSingleItem(item));
+  ul.append(renderSingleItem(item, orderItems));
 });
 
   entreeItems.on('update', () => {
     entreeItems.forEach((item) => {
-      ul.append(renderSingleItem(item));
+      ul.append(renderSingleItem(item, orderItems));
       // console.log(item);
     });
 

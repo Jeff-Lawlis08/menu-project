@@ -8,11 +8,20 @@ import EntreeItem from './models/entreeItem';
 import EntreeItems from './collections/entrees';
 import GameItem from './models/gameItem';
 import Games from './collections/games';
+import OrderThing from './models/orderThing';
+import OrderStuff from './collections/orderStuff';
+import renderOrder from './views/order.js';
+import renderSingleOrderItem from './views/orderItem.js';
 
+let orderItems = new OrderStuff();
 let beerItems = new BeerItems();
 let entreeItems = new EntreeItems();
 let games = new Games();
 let container = $('.menu-container');
+let beerContainer = $('.beers');
+let entreeContainer = $('.entrees');
+let gameContainer = $('.games');
+let orderContainer = $('.order-container');
 
 const Router = Backbone.Router.extend({
   routes: {
@@ -22,11 +31,14 @@ const Router = Backbone.Router.extend({
     beerItems.fetch();
     entreeItems.fetch();
     games.fetch();
-    container.append(renderCourseList(beerItems));
-    container.append(renderCourseList(entreeItems));
-    container.append(renderCourseList(games));
-
+    beerContainer.append(renderCourseList(beerItems, orderItems));
+    entreeContainer.append(renderCourseList(entreeItems, orderItems));
+    gameContainer.append(renderCourseList(games, orderItems));
+    //order stuff
+    orderItems.fetch();
+    orderContainer.append(renderOrder(orderItems));
     }
+
 });
 
 const router = new Router();
