@@ -13,7 +13,11 @@ function renderSingleItem(item, orderItem) {
       orderItem.updateOrder({
         name  : item.get('item'),
         price : item.get('price')});
-    });
+
+    orderItem.addPrice(item.get('price'));
+    orderItem.getTotal(item.get('price'));
+    orderItem.getTax(item.get('price'));
+      });
 return li;
     }
 export default renderSingleItem;

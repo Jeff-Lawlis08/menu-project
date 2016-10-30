@@ -14,31 +14,27 @@ function renderOrder (orderItem) {
       orderItem.on('change', () => {
         orderDiv.empty();
 
-        let subtotal = 0;
-        let tax = 0;
-        let total = 0;
+        // let subtotal = 0;
+        // let tax = 0;
+        // let total = 0;
         orderItem.get('order').forEach((item) => {
+          // let itemPrice = item.price;
+          // subtotal += itemPrice;
+          //
+          // tax +=itemPrice*0.08;
+          //
+          // total = tax+subtotal;
 
-          let itemPrice = item.price;
 
-          subtotal += itemPrice;
-          console.log(subtotal);
-          tax +=itemPrice*0.08;
-          console.log(tax);
-          total = tax+subtotal;
-          console.log(total);
-          // console.log(itemPrice);
           orderDiv.append(renderSingleOrderItem(item));
-
-          // console.log(total);
-          // console.log(item);
         });
+
         let taxDiv = $(`
-          <div class="tax-div">Tax: $${Math.round(tax*100)/100}
+          <div class="tax-div">Tax: $${orderItem.get('tax')}
           </div>
           `);
         let totalDiv = $(`
-          <div class="total-div">Total: $${Math.round(total*100)/100}
+          <div class="total-div">Total: $${orderItem.get('total')}
           </div>
           `);
         const orderButton = $(`
