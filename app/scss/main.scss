@@ -1,1 +1,97 @@
+body {
 
+header {
+  background-image: url("../assets/images/beer.jpeg");
+  width: 100%;
+  height: 14rem;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 2rem;
+  position: relative;
+
+  h1 {
+    position: absolute;
+    bottom: 1rem;
+    left: 40%;
+    color: white;
+    font-family: 'Trirong', serif;
+    font-size: 50px;
+  }
+}
+.menu-container {
+  width: 65%;
+  display: inline-block;
+  margin-right: 2.5%;
+div {
+  border: 1px solid black;
+
+  &:nth-of-type(n+2) {
+    border-top: none;
+  }
+  h2 {
+    border-bottom: 1px solid black;
+    font-family: 'Trirong', serif;
+    margin-top: 0;
+    padding-top: 0.5rem;
+  }
+}
+li {
+  list-style: none;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+
+
+&::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.item-title {
+display: inline-block;
+width: 50%;
+margin-top: 0;
+font-weight: bolder;
+font-size: 20px;
+}
+.item-price {
+  float: right;
+  margin-right: 2%;
+  font-weight: lighter;
+}
+.description {
+  display: block;
+  margin: 0 2% 2rem auto;
+  font-weight: lighter;
+}
+}
+}
+.order-container {
+  display: inline-block;
+  float: right;
+  width: 30%;
+  margin-left: 0 auto;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+
+  h2 {
+    border: 1px solid gray;
+    background-color: #FEE763;
+    margin: 0;
+    border-top: none;
+    font-family: 'Trirong', serif;
+  }
+  .delete {
+    background-color: red;
+    color: white;
+    border-radius: 25%;
+  }
+  .place-order {
+    color: silver;
+    background-color: black;
+    border-radius: 25%
+  }
+}
+
+}

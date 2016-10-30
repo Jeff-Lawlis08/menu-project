@@ -9,10 +9,11 @@ import EntreeItems from './collections/entrees';
 import GameItem from './models/gameItem';
 import Games from './collections/games';
 import OrderItem from './models/orderThing';
-import OrderStuff from './collections/orderStuff';
+import OrderItems from './collections/orderStuff';
 import renderOrder from './views/order.js';
 import renderSingleOrderItem from './views/orderItem.js';
 
+let orderItems = new OrderItems();
 let orderItem = new OrderItem();
 let beerItems = new BeerItems();
 let entreeItems = new EntreeItems();
@@ -36,7 +37,7 @@ const Router = Backbone.Router.extend({
     entreeContainer.append(renderCourseList(entreeItems, orderItem));
     gameContainer.append(renderCourseList(games, orderItem));
     //order stuff
-    orderContainer.append(renderOrder(orderItem));
+    orderContainer.append(renderOrder(orderItem, orderItems));
   },
   renderPlaced() {
       $('.menu-container').hide();

@@ -2,7 +2,7 @@ import Backbone from 'backbone';
 import $ from 'jquery';
 import renderSingleOrderItem from './orderItem';
 
-function renderOrder (orderItem) {
+function renderOrder (orderItem, orderItems) {
   const orderDiv = $(`
     <div class="order-div">
     </div>
@@ -13,22 +13,9 @@ function renderOrder (orderItem) {
 
       orderItem.on('change', () => {
         orderDiv.empty();
-
-        // let subtotal = 0;
-        // let tax = 0;
-        // let total = 0;
         orderItem.get('order').forEach((item) => {
-          // let itemPrice = item.price;
-          // subtotal += itemPrice;
-          //
-          // tax +=itemPrice*0.08;
-          //
-          // total = tax+subtotal;
-
-
           orderDiv.append(renderSingleOrderItem(item));
         });
-
         let taxDiv = $(`
           <div class="tax-div">Tax: $${orderItem.get('tax')}
           </div>
@@ -44,6 +31,11 @@ function renderOrder (orderItem) {
           orderDiv.append(totalDiv);
           orderDiv.append(orderButton);
           orderButton.on('click', (e) => {
+            orderItems.create({
+              order: orderItem.get('order'),
+              tax: orderItem.get('tax'),
+              total: orderItem.get('total')
+            });
             location.hash = 'placedorder';
           });
       });

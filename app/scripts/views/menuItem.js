@@ -4,9 +4,9 @@ import Backbone from 'backbone';
 function renderSingleItem(item, orderItem) {
   const li = $(`
     <li>
-        ${item.get('item')}
-        ${item.get('price')}
-      <span>${item.get('description')}</span>
+        <h5 class="item-title">${item.get('item')}</h5>
+        <span class="item-price">${item.get('price')}</span>
+      <span class="description">${item.get('description')}</span>
     </li>
     `);
     li.on('click', (e) => {
