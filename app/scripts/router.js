@@ -25,25 +25,29 @@ let gameContainer = $('.games');
 let orderContainer = $('.order-container');
 
 const Router = Backbone.Router.extend({
-  routes: {
-    ''           : 'home',
-    'placedorder': 'renderPlaced'
-  },
-  home() {
-    beerItems.fetch();
-    entreeItems.fetch();
-    games.fetch();
-    beerContainer.append(renderCourseList(beerItems, orderItem));
-    entreeContainer.append(renderCourseList(entreeItems, orderItem));
-    gameContainer.append(renderCourseList(games, orderItem));
-    //order stuff
-    orderContainer.append(renderOrder(orderItem, orderItems));
-  },
-  renderPlaced() {
-      $('.menu-container').hide();
-      $('.place-order').hide();
-      renderOrder(orderItem);
-  }
+    routes: {
+        '': 'home',
+        'placedorder': 'renderPlaced'
+    },
+    home() {
+        beerItems.fetch();
+        entreeItems.fetch();
+        games.fetch();
+        beerContainer.append(renderCourseList(beerItems, orderItem));
+        entreeContainer.append(renderCourseList(entreeItems, orderItem));
+        gameContainer.append(renderCourseList(games, orderItem));
+        //order stuff
+        orderContainer.append(renderOrder(orderItem, orderItems));
+    },
+    renderPlaced() {
+        $('.menu-container').hide();
+        $('.place-order').hide();
+        renderOrder(orderItem);
+        orderContainer.css({
+            'width': '50%',
+            'margin': '0 24%'
+        });
+    }
 
 });
 
